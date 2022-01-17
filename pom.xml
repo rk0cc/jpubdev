@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>jpubdev</name>
+    <description>API implementation between Java and pub.dev's REST</description>
+    <packaging>jar</packaging>
+
+    <contributors>
+        <contributor>
+            <name>Cyrus Chan</name>
+            <url>https://www.rk0cc.xyz</url>
+            <email>enquiry@rk0cc.xyz</email>
+            <timezone>8</timezone>
+        </contributor>
+    </contributors>
+
+    <developers>
+        <developer>
+            <name>Cyrus Chan</name>
+            <url>https://www.rk0cc.xyz</url>
+            <email>enquiry@rk0cc.xyz</email>
+            <timezone>8</timezone>
+        </developer>
+    </developers>
+
+    <inceptionYear>2022</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>BSD 3-Clause "New" or "Revised" License</name>
+            <url>https://opensource.org/licenses/BSD-3-Clause</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <groupId>xyz.rk0cc.willpub</groupId>
+    <artifactId>jpubdev</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>
