@@ -7,43 +7,54 @@ import java.util.*;
 
 /**
  * Locate the server of repository uses for fetching data in {@link xyz.rk0cc.willpub.pubdev}.
+ * <br/>
+ * It's referencing Dart package namely <a href="https://pub.dev/packages/pub_api_client">pub_api_client</a>. But
+ * dropped authorization related action which means it perform GET request only.
  *
  * @since 1.0.0
  */
 public record PubDevRepository(@Nonnull URL pubRoot) {
-    @Nonnull
-    private URL resolveURL(@Nonnull String[] path, @Nonnull Map<String, String> query) {
-        StringBuilder refPath = new StringBuilder();
-        refPath.append('/').append(String.join("/", Arrays.asList(path)));
-
-        if (query.size() > 0) {
-            refPath.append('?');
-
-            Iterator<Map.Entry<String, String>> qmei = query.entrySet().iterator();
-            while (qmei.hasNext()) {
-                Map.Entry<String, String> qme = qmei.next();
-
-                refPath.append(qme.getKey());
-                if (qme.getValue() != null) refPath.append('=').append(qme.getValue());
-                if (qmei.hasNext()) refPath.append('&');
-            }
-        }
-
-        try {
-            return new URL(pubRoot, refPath.toString());
-        } catch (MalformedURLException e) {
-            throw new IllegalArgumentException(e);
-        }
-    }
-
-    @Nonnull
-    private URL resolveURL(@Nonnull String... path) {
-        return resolveURL(path, new HashMap<>());
-    }
-
+    /**
+     * Get root location of API.
+     *
+     * @return An {@link URL} located to pub API page.
+     */
     @Nonnull
     public URL apiRoot() {
-        return resolveURL("api");
+        try {
+            return new URL(pubRoot, "/api");
+        } catch (MalformedURLException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    /**
+     * Get the <b>first page</b> of the search result from query.
+     *
+     * @param query Searching query.
+     * @param ordering Specify ordering result.
+     *
+     * @return An {@link URL} of following search API.
+     */
+    @Nonnull
+    public URL search(@Nonnull String query, @Nonnull SearchOrdering ordering) {
+        try {
+            return new URL(apiRoot(), "/search?q=" + query + "&page=1&sort=" + ordering.name().toLowerCase());
+        } catch (MalformedURLException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    /**
+     * Get the <b>first page</b> of the search result from query.
+     *
+     * @param query Searching query.
+     *
+     * @return An {@link URL} of following search API.
+     */
+    @Nonnull
+    public URL search(@Nonnull String query) {
+        return search(query, SearchOrdering.TOP);
     }
 
     /**
@@ -65,7 +76,78 @@ public record PubDevRepository(@Nonnull URL pubRoot) {
         }
     }
 
+    @SuppressWarnings("ClassCanBeRecord")
+    public static final class PubDevPackageResultRepository {
+        private final PubDevRepository repository;
+        private final String packageName;
+
+        private PubDevPackageResultRepository(@Nonnull PubDevRepository repository, @Nonnull String packageName) {
+            this.repository = repository;
+            this.packageName = packageName;
+        }
+
+        @Nonnull
+        public URL summary() {
+            try {
+                return new URL(repository.apiRoot(), "/packages/" + packageName);
+            } catch (MalformedURLException e) {
+                throw new AssertionError(e);
+            }
+        }
+
+        @Nonnull
+        public URL score() {
+            try {
+                return new URL(summary(), "/score");
+            } catch (MalformedURLException e) {
+                throw new AssertionError(e);
+            }
+        }
+
+        @Nonnull
+        public URL metrics() {
+            try {
+                return new URL(summary(), "/metrics");
+            } catch (MalformedURLException e) {
+                throw new AssertionError(e);
+            }
+        }
+
+        @Nonnull
+        public URL options() {
+            try {
+                return new URL(summary(), "/options");
+            } catch (MalformedURLException e) {
+                throw new AssertionError(e);
+            }
+        }
+
+        @Nonnull
+        public URL publisher() {
+            try {
+                return new URL(summary(), "/publisher");
+            } catch (MalformedURLException e) {
+                throw new AssertionError(e);
+            }
+        }
+
+        @Nonnull
+        public URL docs() {
+            try {
+                return new URL(repository.apiRoot(), "/documentation/" + packageName);
+            } catch (MalformedURLException e) {
+                throw new AssertionError(e);
+            }
+        }
+    }
+
     public enum SearchOrdering {
-        TOP;
+        TOP,
+        TEXT,
+        CREATED,
+        UPDATED,
+        POPULARITY,
+        LIKE,
+        POINTS;
     }
 }
