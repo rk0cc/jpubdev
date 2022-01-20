@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class PubSearchContextDeserializer extends StdDeserializer<PubSearchContext> {
+public final class PubSearchContextDeserializer extends StdDeserializer<PubSearchContext> {
     public PubSearchContextDeserializer() {
         this(null);
     }
