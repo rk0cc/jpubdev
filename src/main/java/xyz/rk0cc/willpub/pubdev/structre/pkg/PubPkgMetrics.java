@@ -21,7 +21,7 @@ public record PubPkgMetrics(
         @Nullable DartDocReport dartDocReport,
         @Nullable PanaReport panaReport
 ) {
-    private interface MetricsReport {
+    public interface MetricsReport<E extends MetricsReportEntry> {
         @Nonnull
         ZonedDateTime reportTimestamp();
 
@@ -29,10 +29,10 @@ public record PubPkgMetrics(
         String status();
 
         @Nullable
-        MetricsReportEntry entry();
+        E entry();
     }
 
-    private interface MetricsReportEntry {
+    public interface MetricsReportEntry {
         @Nonnull
         SemVer sdkVersion();
 
@@ -44,7 +44,7 @@ public record PubPkgMetrics(
             @Nonnull ZonedDateTime reportTimestamp,
             @Nonnull String status,
             @Nullable DartDocEntry entry
-    ) implements MetricsReport {
+    ) implements MetricsReport<DartDocReport.DartDocEntry> {
         public record DartDocEntry (
                 boolean latest,
                 boolean obsolete,
@@ -87,12 +87,13 @@ public record PubPkgMetrics(
             @Nonnull ZonedDateTime reportTimestamp,
             @Nonnull String status,
             @Nullable PanaEntry entry
-    ) implements MetricsReport {
+    ) implements MetricsReport<PanaReport.PanaEntry> {
 
         public record PanaEntry(
                 @Nonnull SemVer panaVersion,
                 @Nonnull SemVer sdkVersion,
                 @Nonnull SemVer flutterVersion,
+                @Nonnull Set<DerivedTags<?>> derivedTags,
                 @Nonnull List<String> allDependencies,
                 @Nonnull String licenseName,
                 @Nonnull List<PubPointEntity.DetailedPubPointEntity> reportSections
