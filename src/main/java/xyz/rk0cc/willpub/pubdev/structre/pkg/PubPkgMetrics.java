@@ -1,7 +1,9 @@
 package xyz.rk0cc.willpub.pubdev.structre.pkg;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.commons.io.FileUtils;
 import xyz.rk0cc.josev.SemVer;
+import xyz.rk0cc.willpub.pubdev.parser.PubPkgMetricsDeserializer;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -10,6 +12,7 @@ import java.time.ZonedDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@JsonDeserialize(using = PubPkgMetricsDeserializer.class)
 public record PubPkgMetrics(
         @Nonnull String packageName,
         @Nonnull SemVer packageVersion,
@@ -21,7 +24,7 @@ public record PubPkgMetrics(
         @Nullable DartDocReport dartDocReport,
         @Nullable PanaReport panaReport
 ) {
-    public interface MetricsReport<E extends MetricsReportEntry> {
+    private interface MetricsReport {
         @Nonnull
         ZonedDateTime reportTimestamp();
 
@@ -29,10 +32,10 @@ public record PubPkgMetrics(
         String status();
 
         @Nullable
-        E entry();
+        MetricsReportEntry entry();
     }
 
-    public interface MetricsReportEntry {
+    private interface MetricsReportEntry {
         @Nonnull
         SemVer sdkVersion();
 
@@ -44,7 +47,7 @@ public record PubPkgMetrics(
             @Nonnull ZonedDateTime reportTimestamp,
             @Nonnull String status,
             @Nullable DartDocEntry entry
-    ) implements MetricsReport<DartDocReport.DartDocEntry> {
+    ) implements MetricsReport {
         public record DartDocEntry (
                 boolean latest,
                 boolean obsolete,
@@ -87,7 +90,7 @@ public record PubPkgMetrics(
             @Nonnull ZonedDateTime reportTimestamp,
             @Nonnull String status,
             @Nullable PanaEntry entry
-    ) implements MetricsReport<PanaReport.PanaEntry> {
+    ) implements MetricsReport {
 
         public record PanaEntry(
                 @Nonnull SemVer panaVersion,
