@@ -7,6 +7,13 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import java.time.ZonedDateTime;
 
+/**
+ * Giving package's scores that affecting the display order in
+ * {@link xyz.rk0cc.willpub.pubdev.PubDevRepository.SearchOrdering#POINTS} and
+ * {@link xyz.rk0cc.willpub.pubdev.PubDevRepository.SearchOrdering#TOP}.
+ *
+ * @since 1.0.0
+ */
 @JsonDeserialize(using = PubPkgScoreDeserializer.class)
 public record PubPkgScore(
         @Nonnegative int grantedPoints,
