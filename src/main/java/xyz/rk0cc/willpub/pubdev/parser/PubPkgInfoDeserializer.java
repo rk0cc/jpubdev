@@ -20,9 +20,9 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public final class PubPkgInfoDeserializer extends StdDeserializer<PubPkgInfo> {
+public final class PubPkgInfoDeserializer extends PubJacksonDeserializer<PubPkgInfo> {
     public PubPkgInfoDeserializer() {
-        this(null);
+        super();
     }
 
     public PubPkgInfoDeserializer(Class<?> vc) {
@@ -31,22 +31,22 @@ public final class PubPkgInfoDeserializer extends StdDeserializer<PubPkgInfo> {
 
     @Nonnull
     @Override
-    public PubPkgInfo deserialize(@Nonnull JsonParser jsonParser, DeserializationContext deserializationContext)
-            throws IOException, JacksonException {
-        ObjectNode info = jsonParser.getCodec().readTree(jsonParser);
-        String name = info.get("name").textValue();
-
-        PubPkgInfo.PubPkgVersion latest = deserializeVersion((ObjectNode) info.get("latest"));
-
-        ArrayNode allVer = (ArrayNode) info.get("versions");
+    PubPkgInfo deserializeNode(@Nonnull ObjectNode node, DeserializationContext deserializationContext)
+            throws IOException {
+        ArrayNode allVer = (ArrayNode) node.get("versions");
 
         ArrayList<PubPkgInfo.PubPkgVersion> publishedVersions = new ArrayList<>();
 
         for (JsonNode sv : allVer)
             publishedVersions.add(deserializeVersion((ObjectNode) sv));
 
-        return new PubPkgInfo(name, latest, Collections.unmodifiableList(publishedVersions));
+        return new PubPkgInfo(
+                node.get("name").textValue(),
+                deserializeVersion((ObjectNode) node.get("latest")),
+                Collections.unmodifiableList(publishedVersions)
+        );
     }
+
 
     private static PubPkgInfo.PubPkgVersion deserializeVersion(@Nonnull ObjectNode versionInfo)
             throws JsonProcessingException {
@@ -58,9 +58,9 @@ public final class PubPkgInfoDeserializer extends StdDeserializer<PubPkgInfo> {
     }
 }
 
-final class PubPkgVersionDeserializer extends StdDeserializer<PubPkgInfo.PubPkgVersion> {
+final class PubPkgVersionDeserializer extends PubJacksonDeserializer<PubPkgInfo.PubPkgVersion> {
     PubPkgVersionDeserializer() {
-        this(null);
+        super();
     }
 
     PubPkgVersionDeserializer(Class<?> vc) {
@@ -69,33 +69,22 @@ final class PubPkgVersionDeserializer extends StdDeserializer<PubPkgInfo.PubPkgV
 
     @Nonnull
     @Override
-    public PubPkgInfo.PubPkgVersion deserialize(
-            @Nonnull JsonParser jsonParser,
-            DeserializationContext deserializationContext
-    ) throws IOException, JacksonException {
-        ObjectNode verInfo = jsonParser.getCodec().readTree(jsonParser);
-        SemVer version;
+    PubPkgInfo.PubPkgVersion deserializeNode(@Nonnull ObjectNode node, DeserializationContext deserializationContext)
+            throws IOException {
 
-        try {
-            version = SemVer.parse(verInfo.get("version").textValue());
-        } catch (NonStandardSemVerException e) {
-            throw new IOException(e);
-        }
-
-        PubspecSnapshot pubspec = PubspecSnapshot.getSnapshotOfCurrentPubspec(
-                PubspecParser.pubspecJsonMapper().treeToValue(verInfo.get("pubspec"), Pubspec.class)
-        );
-
-        URL archive;
-
-        try {
-            archive = new URL(verInfo.get("archive_url").textValue());
-        } catch (MalformedURLException e) {
-            throw new IOException(e);
-        }
-
-        ZonedDateTime publishedAt = ZonedDateTime.parse(verInfo.get("published").textValue());
-
-        return new PubPkgInfo.PubPkgVersion(version, pubspec, archive, publishedAt);
+       try {
+           return new PubPkgInfo.PubPkgVersion(
+                   SemVer.parse(node.get("version").textValue()),
+                   PubspecSnapshot.getSnapshotOfCurrentPubspec(
+                           PubspecParser.pubspecJsonMapper().treeToValue(node.get("pubspec"), Pubspec.class)
+                   ),
+                   new URL(node.get("archive_url").textValue()),
+                   ZonedDateTime.parse(node.get("published").textValue())
+           );
+       } catch (MalformedURLException | NonStandardSemVerException e) {
+           throw new IOException(e);
+       }
     }
+
+
 }

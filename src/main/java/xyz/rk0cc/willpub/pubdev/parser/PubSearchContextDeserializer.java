@@ -1,8 +1,6 @@
 package xyz.rk0cc.willpub.pubdev.parser;
 
-import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.*;
 import xyz.rk0cc.willpub.pubdev.structre.PubSearchResult.PubSearchContext;
 
@@ -11,9 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public final class PubSearchContextDeserializer extends StdDeserializer<PubSearchContext> {
+public final class PubSearchContextDeserializer extends PubJacksonDeserializer<PubSearchContext> {
     public PubSearchContextDeserializer() {
-        this(null);
+        super();
     }
 
     public PubSearchContextDeserializer(Class<?> vc) {
@@ -22,15 +20,16 @@ public final class PubSearchContextDeserializer extends StdDeserializer<PubSearc
 
     @Nonnull
     @Override
-    public PubSearchContext deserialize(@Nonnull JsonParser jsonParser, DeserializationContext deserializationContext)
-            throws IOException, JacksonException {
-        ObjectNode pubSearch = jsonParser.getCodec().readTree(jsonParser);
-        ArrayNode pkgs = (ArrayNode) pubSearch.get("packages");
+    PubSearchContext deserializeNode(@Nonnull ObjectNode node, DeserializationContext deserializationContext)
+            throws IOException {
+        ArrayNode pkgs = (ArrayNode) node.get("packages");
         ArrayList<String> searchedPkg = new ArrayList<>();
 
         for (JsonNode pkgNode : pkgs)
             searchedPkg.add(pkgNode.get("package").textValue());
 
-        return new PubSearchContext(Collections.unmodifiableList(searchedPkg), pubSearch.has("next"));
+        return new PubSearchContext(Collections.unmodifiableList(searchedPkg), node.has("next"));
     }
+
+
 }
