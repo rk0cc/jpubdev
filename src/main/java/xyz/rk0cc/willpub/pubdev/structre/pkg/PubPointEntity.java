@@ -19,6 +19,7 @@ public interface PubPointEntity {
     ) implements PubPointEntity {
         enum PubPointStatus {
             PASSED,
+            PARTIAL,
             FAILED;
         }
     }
