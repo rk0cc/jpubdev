@@ -33,7 +33,28 @@ public final class PubPkgMetricsDeserializer extends PubJacksonDeserializer<PubP
 
         ObjectNode scoreCard = (ObjectNode) node.get("scorecard");
 
-        throw new UnsupportedOperationException("Not done yet");
+        ArrayList<String> f = new ArrayList<>();
+        ArrayNode flags = (ArrayNode) node.get("flags");
+        for (JsonNode fi : flags)
+            f.add(fi.textValue());
+
+        JsonNode dartdoc = node.get("dartdocReport"), pana = node.get("panaReport");
+
+        try {
+            return new PubPkgMetrics(
+                    node.get("packageName").textValue(),
+                    SemVer.parse(node.get("packageVersion").textValue()),
+                    node.get("runtimeVersion").textValue(),
+                    ZonedDateTime.parse(node.get("updated").textValue()),
+                    ZonedDateTime.parse(node.get("packageCreated").textValue()),
+                    ZonedDateTime.parse(node.get("packageVersionCreated").textValue()),
+                    Collections.unmodifiableList(f),
+                    dartdoc.isNull() ? null : deserializeDartDocReport((ObjectNode) dartdoc),
+                    pana.isNull() ? null : deserializePanaReport((ObjectNode) pana)
+            );
+        } catch (NonStandardSemVerException e) {
+            throw new IOException(e);
+        }
     }
 
     private static PubPkgMetrics.DartDocReport deserializeDartDocReport(@Nonnull ObjectNode node)
@@ -46,6 +67,18 @@ public final class PubPkgMetricsDeserializer extends PubJacksonDeserializer<PubP
         );
 
         return mapper.treeToValue(node, PubPkgMetrics.DartDocReport.class);
+    }
+
+    private static PubPkgMetrics.PanaReport deserializePanaReport(@Nonnull ObjectNode node)
+            throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper().registerModule(
+                new SimpleModule().addDeserializer(
+                        PubPkgMetrics.PanaReport.class,
+                        new PubPkgPanaReportDeserializer()
+                )
+        );
+
+        return mapper.treeToValue(node, PubPkgMetrics.PanaReport.class);
     }
 }
 
@@ -133,7 +166,8 @@ final class PubPkgPanaReportDeserializer extends PubJacksonDeserializer<PubPkgMe
 
     @Nonnull
     @Override
-    PubPkgMetrics.PanaReport deserializeNode(@Nonnull ObjectNode node, DeserializationContext deserializationContext) throws IOException {
+    PubPkgMetrics.PanaReport deserializeNode(@Nonnull ObjectNode node, DeserializationContext deserializationContext)
+            throws IOException {
         String s = node.get("reportStatus").textValue();
         boolean reportSuccess = s.equals("success");
         ObjectNode entry = node.deepCopy();
@@ -141,7 +175,8 @@ final class PubPkgPanaReportDeserializer extends PubJacksonDeserializer<PubPkgMe
         /*
             Actually, it does not contain "entry" field for pana.
 
-            But I made that object so just parse and remove unused entry.
+            But these field will not exist when report status is not 'success', so I create a nested class that allowing
+            return null if report unsuccessfully.
         */
         if (reportSuccess) {
             entry.remove("reportStatus");
@@ -207,7 +242,7 @@ final class PubPkgPanaEntryDeserializer extends PubJacksonDeserializer<PubPkgMet
                     SemVer.parse(node.get("flutterVersions").get("frameworkVersion").textValue()),
                     PubPkgMetrics.PanaReport.PanaEntry.DerivedTags.parseTagsList(dt),
                     Collections.unmodifiableList(allDeps),
-                    license.isNull() ? "none" : license.textValue(),
+                    license.isNull() ? "No licenses information provided" : license.textValue(),
                     Collections.unmodifiableList(dppe)
             );
         } catch (NonStandardSemVerException e) {
