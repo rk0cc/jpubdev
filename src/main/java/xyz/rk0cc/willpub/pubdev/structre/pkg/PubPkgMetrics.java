@@ -1,5 +1,6 @@
 package xyz.rk0cc.willpub.pubdev.structre.pkg;
 
+import org.apache.commons.io.FileUtils;
 import xyz.rk0cc.josev.SemVer;
 
 import javax.annotation.Nonnegative;
@@ -59,7 +60,27 @@ public record PubPkgMetrics(
                 @Nonnegative long totalSize,
                 @Nonnegative long blobSize,
                 @Nonnegative long blobIndexSize
-        ) implements MetricsReportEntry {}
+        ) implements MetricsReportEntry {
+            @Nonnull
+            public String archiveSizeDisplay() {
+                return FileUtils.byteCountToDisplaySize(archiveSize);
+            }
+
+            @Nonnull
+            public String totalSizeDisplay() {
+                return FileUtils.byteCountToDisplaySize(totalSize);
+            }
+
+            @Nonnull
+            public String blobSizeDisplay() {
+                return FileUtils.byteCountToDisplaySize(blobSize);
+            }
+
+            @Nonnull
+            public String blobIndexSizeDisplay() {
+                return FileUtils.byteCountToDisplaySize(blobIndexSize);
+            }
+        }
     }
 
     public record PanaReport(
