@@ -49,6 +49,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>xyz.rk0cc.josev</groupId>
+            <artifactId>josev-core</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
             <groupId>xyz.rk0cc.willpub</groupId>
             <artifactId>jpubspec</artifactId>
             <version>1.2.0</version>
