@@ -34,20 +34,20 @@ public final class PubPkgMetricsDeserializer extends PubJacksonDeserializer<PubP
         ObjectNode scoreCard = (ObjectNode) node.get("scorecard");
 
         ArrayList<String> f = new ArrayList<>();
-        ArrayNode flags = (ArrayNode) node.get("flags");
+        ArrayNode flags = (ArrayNode) scoreCard.get("flags");
         for (JsonNode fi : flags)
             f.add(fi.textValue());
 
-        JsonNode dartdoc = node.get("dartdocReport"), pana = node.get("panaReport");
+        JsonNode dartdoc = scoreCard.get("dartdocReport"), pana = scoreCard.get("panaReport");
 
         try {
             return new PubPkgMetrics(
-                    node.get("packageName").textValue(),
-                    SemVer.parse(node.get("packageVersion").textValue()),
-                    node.get("runtimeVersion").textValue(),
-                    ZonedDateTime.parse(node.get("updated").textValue()),
-                    ZonedDateTime.parse(node.get("packageCreated").textValue()),
-                    ZonedDateTime.parse(node.get("packageVersionCreated").textValue()),
+                    scoreCard.get("packageName").textValue(),
+                    SemVer.parse(scoreCard.get("packageVersion").textValue()),
+                    scoreCard.get("runtimeVersion").textValue(),
+                    ZonedDateTime.parse(scoreCard.get("updated").textValue()),
+                    ZonedDateTime.parse(scoreCard.get("packageCreated").textValue()),
+                    ZonedDateTime.parse(scoreCard.get("packageVersionCreated").textValue()),
                     Collections.unmodifiableList(f),
                     dartdoc.isNull() ? null : deserializeDartDocReport((ObjectNode) dartdoc),
                     pana.isNull() ? null : deserializePanaReport((ObjectNode) pana)
