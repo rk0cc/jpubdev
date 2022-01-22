@@ -228,7 +228,12 @@ final class PubPkgPanaEntryDeserializer extends PubJacksonDeserializer<PubPkgMet
         for (JsonNode aldi : allDependencies)
             allDeps.add(aldi.textValue());
 
-        TextNode license = (TextNode) node.get("licenseFile").get("name");
+        String license = "No license information provided";
+        ObjectNode licenseFile = (ObjectNode) node.get("licenseFile");
+        if (licenseFile != null && licenseFile.isObject()) {
+            TextNode ln = (TextNode) licenseFile.get("name");
+            if (ln != null && ln.isTextual()) license = ln.textValue();
+        }
 
         ArrayList<PubPointEntity.DetailedPubPointEntity> dppe = new ArrayList<>();
         ArrayNode reportSec = (ArrayNode) node.get("report").get("sections");
@@ -237,12 +242,12 @@ final class PubPkgPanaEntryDeserializer extends PubJacksonDeserializer<PubPkgMet
 
         try {
             return new PubPkgMetrics.PanaReport.PanaEntry(
-                    SemVer.parse(node.get("panaVersion").textValue()),
-                    SemVer.parse(node.get("sdkVersion").textValue()),
-                    SemVer.parse(node.get("flutterVersions").get("frameworkVersion").textValue()),
+                    SemVer.parse(node.get("panaRuntimeInfo").get("panaVersion").textValue()),
+                    SemVer.parse(node.get("panaRuntimeInfo").get("sdkVersion").textValue()),
+                    SemVer.parse(node.get("panaRuntimeInfo").get("flutterVersions").get("frameworkVersion").textValue()),
                     PubPkgMetrics.PanaReport.PanaEntry.DerivedTags.parseTagsList(dt),
                     Collections.unmodifiableList(allDeps),
-                    license.isNull() ? "No licenses information provided" : license.textValue(),
+                    license,
                     Collections.unmodifiableList(dppe)
             );
         } catch (NonStandardSemVerException e) {
