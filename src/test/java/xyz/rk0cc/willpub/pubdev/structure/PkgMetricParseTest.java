@@ -80,4 +80,16 @@ final class PkgMetricParseTest {
             assertInstanceOf(MetricsPendingAnalysisException.class, e);
         }
     }
+
+    @DisplayName("Throw AssertionError if MetricsPendingAnalysisException")
+    @Test
+    void assertErrorIfThrowPAEOutsideDeserializer() {
+        assertThrows(AssertionError.class, () -> {
+            try {
+                throw new MetricsPendingAnalysisException();
+            } catch (MetricsPendingAnalysisException e) {
+                fail("The exception should not be thrown outside the deserializer");
+            }
+        });
+    }
 }
