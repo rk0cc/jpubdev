@@ -4,8 +4,7 @@ import xyz.rk0cc.willpub.pubspec.data.PubspecValueValidator;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
 import java.util.*;
 
 /**
@@ -16,19 +15,15 @@ import java.util.*;
  *
  * @since 1.0.0
  */
-public record PubDevRepository(@Nonnull URL pubRoot) {
+public record PubDevRepository(@Nonnull URI pubRoot) {
     /**
      * Get root location of API.
      *
-     * @return An {@link URL} located to pub API page.
+     * @return An {@link URI} located to pub API page.
      */
     @Nonnull
-    public URL apiRoot() {
-        try {
-            return new URL(pubRoot, "/api");
-        } catch (MalformedURLException e) {
-            throw new AssertionError(e);
-        }
+    public URI apiRoot() {
+        return URI.create(pubRoot + "/api");
     }
 
     /**
@@ -38,24 +33,20 @@ public record PubDevRepository(@Nonnull URL pubRoot) {
      * @param page Page number of the search result.
      * @param ordering Specify ordering result.
      *
-     * @return An {@link URL} of following search API.
+     * @return An {@link URI} of following search API.
      */
     @Nonnull
-    public URL search(@Nonnull String query, @Nonnegative long page, @Nonnull SearchOrdering ordering) {
-        try {
-            return new URL(apiRoot(), "/search?q=" + query + "&page=" + page + "&sort=" + ordering.name().toLowerCase());
-        } catch (MalformedURLException e) {
-            throw new AssertionError(e);
-        }
+    public URI search(@Nonnull String query, @Nonnegative long page, @Nonnull SearchOrdering ordering) {
+        return URI.create(apiRoot() + "/search?q=" + query + "&page=" + page + "&sort=" + ordering.name().toLowerCase());
     }
 
     @Nonnull
-    public URL search(@Nonnull String query, @Nonnull SearchOrdering ordering) {
+    public URI search(@Nonnull String query, @Nonnull SearchOrdering ordering) {
         return search(query, 1, ordering);
     }
 
     @Nonnull
-    public URL search(@Nonnull String query, @Nonnegative int page) {
+    public URI search(@Nonnull String query, @Nonnegative long page) {
         return search(query, page, SearchOrdering.TOP);
     }
 
@@ -64,10 +55,10 @@ public record PubDevRepository(@Nonnull URL pubRoot) {
      *
      * @param query Searching query.
      *
-     * @return An {@link URL} of following search API.
+     * @return An {@link URI} of following search API.
      */
     @Nonnull
-    public URL search(@Nonnull String query) {
+    public URI search(@Nonnull String query) {
         return search(query, SearchOrdering.TOP);
     }
 
@@ -88,12 +79,7 @@ public record PubDevRepository(@Nonnull URL pubRoot) {
     @Nonnull
     public static PubDevRepository getInstance() {
         String defaultPubRepo = System.getenv("PUB_HOSTED_URL");
-
-        try {
-            return new PubDevRepository(new URL(defaultPubRepo == null ? "https://pub.dev" : defaultPubRepo));
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+        return new PubDevRepository(URI.create(defaultPubRepo == null ? "https://pub.dev" : defaultPubRepo));
     }
 
     @SuppressWarnings("ClassCanBeRecord")
@@ -112,57 +98,33 @@ public record PubDevRepository(@Nonnull URL pubRoot) {
         }
 
         @Nonnull
-        public URL summary() {
-            try {
-                return new URL(repository.apiRoot(), "/packages/" + packageName);
-            } catch (MalformedURLException e) {
-                throw new AssertionError(e);
-            }
+        public URI info() {
+            return URI.create(repository.apiRoot() + "/package/" + packageName);
         }
 
         @Nonnull
-        public URL score() {
-            try {
-                return new URL(summary(), "/score");
-            } catch (MalformedURLException e) {
-                throw new AssertionError(e);
-            }
+        public URI score() {
+            return URI.create(info() + "/score");
         }
 
         @Nonnull
-        public URL metrics() {
-            try {
-                return new URL(summary(), "/metrics");
-            } catch (MalformedURLException e) {
-                throw new AssertionError(e);
-            }
+        public URI metrics() {
+            return URI.create(info() + "/metrics");
         }
 
         @Nonnull
-        public URL options() {
-            try {
-                return new URL(summary(), "/options");
-            } catch (MalformedURLException e) {
-                throw new AssertionError(e);
-            }
+        public URI options() {
+            return URI.create(info() + "/options");
         }
 
         @Nonnull
-        public URL publisher() {
-            try {
-                return new URL(summary(), "/publisher");
-            } catch (MalformedURLException e) {
-                throw new AssertionError(e);
-            }
+        public URI publisher() {
+            return URI.create(info() + "/publisher");
         }
 
         @Nonnull
-        public URL docs() {
-            try {
-                return new URL(repository.apiRoot(), "/documentation/" + packageName);
-            } catch (MalformedURLException e) {
-                throw new AssertionError(e);
-            }
+        public URI docs() {
+            return URI.create(repository.apiRoot() + "/documentation/" + packageName);
         }
     }
 

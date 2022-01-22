@@ -6,7 +6,7 @@ import xyz.rk0cc.willpub.pubdev.parser.PubSearchContextDeserializer;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import java.net.URL;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -20,29 +20,29 @@ public record PubSearchResult(
         @Nonnull PubSearchContext context
 ) {
     /**
-     * Get a next page {@link URL} for {@link PubSearchResult current result} if returned result provides
+     * Get a next page {@link URI} for {@link PubSearchResult current result} if returned result provides
      * {@link PubSearchContext#hasNextPage() next page}.
      *
      * @param repository The {@link PubDevRepository} currently uses.
      *
-     * @return {@link URL} to next page of the {@link PubSearchResult search result}.
+     * @return {@link URI} to next page of the {@link PubSearchResult search result}.
      */
     @Nonnull
-    public URL nextPageURL(@Nonnull PubDevRepository repository) {
+    public URI nextPageURL(@Nonnull PubDevRepository repository) {
         assert context().hasNextPage;
         return repository.search(query, page + 1, ordering);
     }
 
     /**
-     * Get a previous page {@link URL} for {@link PubSearchResult current result} which the {@link #page() page number}
+     * Get a previous page {@link URI} for {@link PubSearchResult current result} which the {@link #page() page number}
      * is greater than 1.
      *
      * @param repository The {@link PubDevRepository} currently uses.
      *
-     * @return {@link URL} to previous page of the {@link PubSearchResult search result}.
+     * @return {@link URI} to previous page of the {@link PubSearchResult search result}.
      */
     @Nonnull
-    public URL previousPageURL(@Nonnull PubDevRepository repository) {
+    public URI previousPageURL(@Nonnull PubDevRepository repository) {
         assert page > 1;
         return repository.search(query, context.packages().isEmpty() ? 1 : page - 1, ordering);
     }
