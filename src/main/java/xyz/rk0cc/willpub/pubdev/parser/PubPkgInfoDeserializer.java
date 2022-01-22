@@ -19,11 +19,25 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Deserialize handler for {@link PubPkgInfo}.
+ *
+ * @since 1.0.0
+ */
 public final class PubPkgInfoDeserializer extends PubJacksonDeserializer<PubPkgInfo> {
+    /**
+     * Create new deserializer without class applied.
+     */
     public PubPkgInfoDeserializer() {
         super();
     }
 
+    /**
+     * Create new deserializer.
+     *
+     * @param vc Specify the target {@link Class}.
+     */
+    @Deprecated(since = "Redundant constructor, providing class is not required")
     public PubPkgInfoDeserializer(Class<?> vc) {
         super(vc);
     }

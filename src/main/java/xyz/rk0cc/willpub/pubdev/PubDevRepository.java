@@ -41,7 +41,7 @@ public record PubDevRepository(@Nonnull URL pubRoot) {
      * @return An {@link URL} of following search API.
      */
     @Nonnull
-    public URL search(@Nonnull String query, @Nonnegative int page, @Nonnull SearchOrdering ordering) {
+    public URL search(@Nonnull String query, @Nonnegative long page, @Nonnull SearchOrdering ordering) {
         try {
             return new URL(apiRoot(), "/search?q=" + query + "&page=" + page + "&sort=" + ordering.name().toLowerCase());
         } catch (MalformedURLException e) {

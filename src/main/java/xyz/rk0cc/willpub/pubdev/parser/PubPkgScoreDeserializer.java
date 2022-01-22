@@ -8,6 +8,9 @@ import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.time.ZonedDateTime;
 
+/**
+ * Deserialize handler
+ */
 public final class PubPkgScoreDeserializer extends PubJacksonDeserializer<PubPkgScore> {
     public PubPkgScoreDeserializer() {
         super();

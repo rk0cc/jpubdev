@@ -7,11 +7,25 @@ import xyz.rk0cc.willpub.pubdev.structure.pkg.PubPkgPublisher;
 import javax.annotation.Nonnull;
 import java.io.IOException;
 
+/**
+ * Deserialize handler for {@link PubPkgPublisher}.
+ *
+ * @since 1.0.0
+ */
 public final class PubPkgPublisherDeserializer extends PubJacksonDeserializer<PubPkgPublisher> {
+    /**
+     * Create new deserializer without specific class applied.
+     */
     public PubPkgPublisherDeserializer() {
         super();
     }
 
+    /**
+     * Create new deserializer.
+     *
+     * @param vc Specify the target {@link Class}.
+     */
+    @Deprecated(since = "Redundant constructor, providing class is not required")
     public PubPkgPublisherDeserializer(Class<?> vc) {
         super(vc);
     }

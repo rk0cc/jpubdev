@@ -9,11 +9,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Deserialize handler for {@link PubSearchContext}.
+ *
+ * @since 1.0.0
+ */
 public final class PubSearchContextDeserializer extends PubJacksonDeserializer<PubSearchContext> {
+    /**
+     * Create new deserializer without class applied.
+     */
     public PubSearchContextDeserializer() {
         super();
     }
 
+    /**
+     * Create new deserializer.
+     *
+     * @param vc Specify the target {@link Class}.
+     */
+    @Deprecated(since = "Redundant constructor, providing class is not required")
     public PubSearchContextDeserializer(Class<?> vc) {
         super(vc);
     }
@@ -30,6 +44,4 @@ public final class PubSearchContextDeserializer extends PubJacksonDeserializer<P
 
         return new PubSearchContext(Collections.unmodifiableList(searchedPkg), node.has("next"));
     }
-
-
 }

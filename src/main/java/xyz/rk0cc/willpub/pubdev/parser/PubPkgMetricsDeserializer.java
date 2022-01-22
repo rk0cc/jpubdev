@@ -16,11 +16,25 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Deserialize context of {@link PubPkgMetrics}.
+ *
+ * @since 1.0.0
+ */
 public final class PubPkgMetricsDeserializer extends PubJacksonDeserializer<PubPkgMetrics> {
+    /**
+     * Create new deserializer without specific class apply.
+     */
     public PubPkgMetricsDeserializer() {
         super();
     }
 
+    /**
+     * Create new deserializer.
+     *
+     * @param vc Specify the target {@link Class}.
+     */
+    @Deprecated(since = "Redundant constructor, providing class is not required")
     public PubPkgMetricsDeserializer(Class<?> vc) {
         super(vc);
     }

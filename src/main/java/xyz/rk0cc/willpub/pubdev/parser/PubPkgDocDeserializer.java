@@ -13,11 +13,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Deserialize context of {@link PubPkgDoc}.
+ *
+ * @since 1.0.0
+ */
 public final class PubPkgDocDeserializer extends PubJacksonDeserializer<PubPkgDoc> {
+    /**
+     * Create new deserializer without specific class.
+     */
     public PubPkgDocDeserializer() {
         super();
     }
 
+    /**
+     * Create new deserializer.
+     *
+     * @param vc Specify the target {@link Class}.
+     */
+    @Deprecated(since = "Redundant constructor, providing class is not required")
     public PubPkgDocDeserializer(Class<?> vc) {
         super(vc);
     }

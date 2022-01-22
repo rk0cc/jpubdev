@@ -15,7 +15,7 @@ import java.util.List;
  */
 public record PubSearchResult(
         @Nonnull String query,
-        @Nonnegative int page,
+        @Nonnegative long page,
         @Nonnull PubDevRepository.SearchOrdering ordering,
         @Nonnull PubSearchContext context
 ) {
