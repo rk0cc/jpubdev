@@ -8,6 +8,12 @@
     <description>API implementation between Java and pub.dev's REST</description>
     <packaging>jar</packaging>
 
+    <scm>
+        <connection>scm:git:git://github.com/Project-Will-Pub/jpubdev.git</connection>
+        <developerConnection>scm:git:git://github.com/Project-Will-Pub/jpubdev.git</developerConnection>
+        <url>https://github.com/Project-Will-Pub/jpubdev</url>
+    </scm>
+
     <contributors>
         <contributor>
             <name>Cyrus Chan</name>
