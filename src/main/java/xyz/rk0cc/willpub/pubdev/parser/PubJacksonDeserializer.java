@@ -16,7 +16,7 @@ import java.io.IOException;
  *
  * @since 1.0.0
  */
-public abstract class PubJacksonDeserializer<T> extends StdDeserializer<T> {
+abstract class PubJacksonDeserializer<T> extends StdDeserializer<T> {
     /**
      * Create new deserializer with no {@link Class} applied.
      */
