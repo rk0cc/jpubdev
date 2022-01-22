@@ -141,7 +141,7 @@ public record PubPkgMetrics(
                 @Nonnull SemVer panaVersion,
                 @Nonnull SemVer sdkVersion,
                 @Nonnull SemVer flutterVersion,
-                @Nonnull Set<DerivedTags<?>> derivedTags,
+                @Nonnull Set<DerivedTags<? extends Enum<?>>> derivedTags,
                 @Nonnull List<String> allDependencies,
                 @Nonnull String licenseName,
                 @Nonnull List<PubPointEntity.DetailedPubPointEntity> reportSections
