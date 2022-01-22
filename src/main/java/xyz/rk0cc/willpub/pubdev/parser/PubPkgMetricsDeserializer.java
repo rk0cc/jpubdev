@@ -139,7 +139,7 @@ final class PubPkgDartDocEntryDeserializer extends PubJacksonDeserializer<PubPkg
                     node.get("usesFlutter").booleanValue(),
                     SemVer.parse(node.get("sdkVersion").textValue()),
                     SemVer.parse(node.get("dartdocVersion").textValue()),
-                    SemVer.parse(node.get("flutterVersioin").textValue()),
+                    SemVer.parse(node.get("flutterVersion").textValue()),
                     ZonedDateTime.parse(node.get("timestamp").textValue()),
                     node.get("runDuration").longValue(),
                     node.get("depsResolved").booleanValue(),
