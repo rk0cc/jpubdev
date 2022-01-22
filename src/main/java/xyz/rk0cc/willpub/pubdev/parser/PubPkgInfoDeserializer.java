@@ -9,7 +9,7 @@ import xyz.rk0cc.josev.SemVer;
 import xyz.rk0cc.willpub.pubdev.structure.pkg.PubPkgInfo;
 import xyz.rk0cc.willpub.pubspec.data.Pubspec;
 import xyz.rk0cc.willpub.pubspec.data.PubspecSnapshot;
-import xyz.rk0cc.willpub.pubspec.parser.PubspecParser;
+import xyz.rk0cc.willpub.pubspec.parser.PubspecJSONParser;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
@@ -75,7 +75,7 @@ final class PubPkgVersionDeserializer extends PubJacksonDeserializer<PubPkgInfo.
            return new PubPkgInfo.PubPkgVersion(
                    SemVer.parse(node.get("version").textValue()),
                    PubspecSnapshot.getSnapshotOfCurrentPubspec(
-                           PubspecParser.pubspecJsonMapper().treeToValue(node.get("pubspec"), Pubspec.class)
+                           PubspecJSONParser.getParser().treeToValue(node.get("pubspec"), Pubspec.class)
                    ),
                    new URL(node.get("archive_url").textValue()),
                    ZonedDateTime.parse(node.get("published").textValue())

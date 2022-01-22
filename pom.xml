@@ -51,7 +51,7 @@
         <dependency>
             <groupId>xyz.rk0cc.willpub</groupId>
             <artifactId>jpubspec</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -63,21 +63,6 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.13.1</version>
-            <optional>true</optional>
-        </dependency>
-        <!-- Giving compatible for parsing pubspec -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-yaml</artifactId>
-            <version>2.13.1</version>
-            <scope>provided</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>1.30</version>
-            <scope>provided</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -242,6 +227,7 @@
                             <show>protected</show>
                             <doclint>none</doclint>
                             <links>
+                                <link>https://willpub.rk0cc.xyz/docs/api/jpubspec/1.2.0/</link>
                                 <link>https://osp.rk0cc.xyz/javadoc/josev/josev-core/3.1.0/</link>
                                 <link>https://osp.rk0cc.xyz/javadoc/josev/josev-pub/3.0.1/</link>
                                 <link>https://osp.rk0cc.xyz/javadoc/jogu/jogu/1.1.0/</link>
