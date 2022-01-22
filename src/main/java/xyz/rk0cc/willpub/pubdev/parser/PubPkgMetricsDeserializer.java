@@ -95,11 +95,13 @@ final class PubPkgDartDocReportDeserializer extends PubJacksonDeserializer<PubPk
     @Override
     PubPkgMetrics.DartDocReport deserializeNode(@Nonnull ObjectNode node, DeserializationContext deserializationContext)
             throws IOException {
+        JsonNode dde = node.get("dartdocEntry");
+
         return new PubPkgMetrics.DartDocReport(
                 ZonedDateTime.parse(node.get("timestamp").textValue()),
                 node.get("reportStatus").textValue(),
-                node.has("dartdocEntry")
-                        ? resolveDartDocEntry((ObjectNode) node.get("dartdocEntry"))
+                dde != null && dde.isObject()
+                        ? resolveDartDocEntry((ObjectNode) dde)
                         : null
         );
     }
