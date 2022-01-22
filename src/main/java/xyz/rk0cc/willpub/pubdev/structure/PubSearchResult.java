@@ -26,10 +26,13 @@ public record PubSearchResult(
      * @param repository The {@link PubDevRepository} currently uses.
      *
      * @return {@link URI} to next page of the {@link PubSearchResult search result}.
+     *
+     * @throws IndexOutOfBoundsException When it reached the last page of the search result already.
      */
     @Nonnull
     public URI nextPageURL(@Nonnull PubDevRepository repository) {
-        assert context().hasNextPage;
+        if (!context().hasNextPage)
+            throw new IndexOutOfBoundsException("This is the last page of the search result");
         return repository.search(query, page + 1, ordering);
     }
 
@@ -40,10 +43,13 @@ public record PubSearchResult(
      * @param repository The {@link PubDevRepository} currently uses.
      *
      * @return {@link URI} to previous page of the {@link PubSearchResult search result}.
+     *
+     * @throws IndexOutOfBoundsException When accessing previous page on page 1.
      */
     @Nonnull
     public URI previousPageURL(@Nonnull PubDevRepository repository) {
-        assert page > 1;
+        if (page <= 1)
+            throw new IndexOutOfBoundsException("This is the first page of search result.");
         return repository.search(query, context.packages().isEmpty() ? 1 : page - 1, ordering);
     }
 
