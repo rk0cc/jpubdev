@@ -1,4 +1,4 @@
-package xyz.rk0cc.willpub.pubdev.structre.pkg;
+package xyz.rk0cc.willpub.pubdev.structure.pkg;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.commons.io.FileUtils;
@@ -147,7 +147,7 @@ public record PubPkgMetrics(
                 @Nonnull List<PubPointEntity.DetailedPubPointEntity> reportSections
         ) implements MetricsReportEntry {
             /**
-             * Get {@link xyz.rk0cc.willpub.pubdev.structre.pkg.PubPointEntity.DetailedPubPointEntity} with
+             * Get {@link xyz.rk0cc.willpub.pubdev.structure.pkg.PubPointEntity.DetailedPubPointEntity} with
              * given ID.
              *
              * @param id ID name of the entity.

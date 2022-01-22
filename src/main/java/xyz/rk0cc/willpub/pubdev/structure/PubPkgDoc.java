@@ -1,4 +1,4 @@
-package xyz.rk0cc.willpub.pubdev.structre;
+package xyz.rk0cc.willpub.pubdev.structure;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import xyz.rk0cc.josev.SemVer;

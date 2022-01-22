@@ -1,4 +1,4 @@
-package xyz.rk0cc.willpub.pubdev.structre.pkg;
+package xyz.rk0cc.willpub.pubdev.structure.pkg;
 
 import org.junit.jupiter.api.*;
 

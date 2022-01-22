@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.node.*;
 import xyz.rk0cc.josev.NonStandardSemVerException;
 import xyz.rk0cc.josev.SemVer;
 import xyz.rk0cc.willpub.exceptions.pubdev.MetricsPendingAnalysisException;
-import xyz.rk0cc.willpub.pubdev.structre.pkg.PubPkgMetrics;
-import xyz.rk0cc.willpub.pubdev.structre.pkg.PubPointEntity;
+import xyz.rk0cc.willpub.pubdev.structure.pkg.PubPkgMetrics;
+import xyz.rk0cc.willpub.pubdev.structure.pkg.PubPointEntity;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;

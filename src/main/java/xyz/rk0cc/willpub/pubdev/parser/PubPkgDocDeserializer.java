@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.node.*;
 import xyz.rk0cc.josev.NonStandardSemVerException;
 import xyz.rk0cc.josev.SemVer;
-import xyz.rk0cc.willpub.pubdev.structre.PubPkgDoc;
+import xyz.rk0cc.willpub.pubdev.structure.PubPkgDoc;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;

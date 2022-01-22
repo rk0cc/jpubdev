@@ -3,4 +3,4 @@
  *
  * @since 1.0.0
  */
-package xyz.rk0cc.willpub.pubdev.structre;
+package xyz.rk0cc.willpub.pubdev.structure;

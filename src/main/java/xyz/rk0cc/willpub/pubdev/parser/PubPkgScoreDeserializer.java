@@ -2,7 +2,7 @@ package xyz.rk0cc.willpub.pubdev.parser;
 
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import xyz.rk0cc.willpub.pubdev.structre.pkg.PubPkgScore;
+import xyz.rk0cc.willpub.pubdev.structure.pkg.PubPkgScore;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;

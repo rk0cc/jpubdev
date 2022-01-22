@@ -1,4 +1,4 @@
-package xyz.rk0cc.willpub.pubdev.structre.pkg;
+package xyz.rk0cc.willpub.pubdev.structure.pkg;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import xyz.rk0cc.willpub.pubdev.parser.PubPkgScoreDeserializer;

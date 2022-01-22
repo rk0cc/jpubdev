@@ -2,12 +2,11 @@ package xyz.rk0cc.willpub.pubdev.parser;
 
 import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.node.*;
 import xyz.rk0cc.josev.NonStandardSemVerException;
 import xyz.rk0cc.josev.SemVer;
-import xyz.rk0cc.willpub.pubdev.structre.pkg.PubPkgInfo;
+import xyz.rk0cc.willpub.pubdev.structure.pkg.PubPkgInfo;
 import xyz.rk0cc.willpub.pubspec.data.Pubspec;
 import xyz.rk0cc.willpub.pubspec.data.PubspecSnapshot;
 import xyz.rk0cc.willpub.pubspec.parser.PubspecParser;
