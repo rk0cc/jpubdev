@@ -99,7 +99,7 @@ public record PubDevRepository(@Nonnull URI pubRoot) {
 
         @Nonnull
         public URI info() {
-            return URI.create(repository.apiRoot() + "/package/" + packageName);
+            return URI.create(repository.apiRoot() + "/packages/" + packageName);
         }
 
         @Nonnull
