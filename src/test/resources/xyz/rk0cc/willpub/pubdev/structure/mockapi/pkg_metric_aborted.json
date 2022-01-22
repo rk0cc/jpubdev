@@ -1,0 +1,47 @@
+{
+  "score": {
+    "grantedPoints": 0,
+    "maxPoints": 0,
+    "likeCount": 1,
+    "popularityScore": 0.4381916777335104,
+    "lastUpdated": "2022-01-21T02:15:57.721537Z"
+  },
+  "scorecard": {
+    "packageName": "sky_engine",
+    "packageVersion": "0.0.99",
+    "runtimeVersion": "2022.01.06",
+    "updated": "2022-01-21T02:15:57.721537Z",
+    "packageCreated": "2015-07-27T16:07:55.482Z",
+    "packageVersionCreated": "2016-02-19T03:39:58.012Z",
+    "grantedPubPoints": 0,
+    "maxPubPoints": 0,
+    "popularityScore": 0.4381916777335104,
+    "derivedTags": [],
+    "flags": [
+      "discontinued",
+      "latest-stable",
+      "legacy"
+    ],
+    "reportTypes": [
+      "pana",
+      "dartdoc"
+    ],
+    "dartdocReport": {
+      "timestamp": "2022-01-19T05:25:09.313122Z",
+      "reportStatus": "aborted",
+      "dartdocEntry": null,
+      "documentationSection": {
+        "id": "documentation",
+        "title": "Provide documentation",
+        "grantedPoints": 0,
+        "maxPoints": 10,
+        "status": "failed",
+        "summary": "### [x] 0/10 points: Did not run dartdoc\n\n* This package is not compatible with the current analysis SDK version"
+      }
+    },
+    "panaReport": {
+      "timestamp": "2022-01-21T02:15:57.682737Z",
+      "reportStatus": "aborted"
+    }
+  }
+}

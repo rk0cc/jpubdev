@@ -1,0 +1,149 @@
+{
+  "name": "weather_unit",
+  "latest": {
+    "version": "1.1.2+1",
+    "pubspec": {
+      "name": "weather_unit",
+      "description": "Providing weather unit in Dart with display, compare and convert unit.",
+      "homepage": "https://www.rk0cc.xyz",
+      "repository": "https://github.com/Weanel/weather_unit",
+      "version": "1.1.2+1",
+      "environment": {
+        "sdk": ">=2.12.0 <3.0.0"
+      },
+      "dev_dependencies": {
+        "test": "^1.17.10"
+      }
+    },
+    "archive_url": "https://pub.dartlang.org/packages/weather_unit/versions/1.1.2%2B1.tar.gz",
+    "published": "2021-08-28T14:42:39.555178Z"
+  },
+  "versions": [
+    {
+      "version": "1.0.0",
+      "pubspec": {
+        "name": "weather_unit",
+        "description": "Providing weather unit in Dart",
+        "homepage": "https://www.rk0cc.xyz",
+        "repository": "https://github.com/Weanel/weather_unit",
+        "version": "1.0.0",
+        "environment": {
+          "sdk": ">=2.10.0 <3.0.0"
+        },
+        "dev_dependencies": {
+          "test": "^1.17.10"
+        }
+      },
+      "archive_url": "https://pub.dartlang.org/packages/weather_unit/versions/1.0.0.tar.gz",
+      "published": "2021-07-25T11:40:37.721230Z"
+    },
+    {
+      "version": "1.0.1",
+      "pubspec": {
+        "name": "weather_unit",
+        "description": "Providing weather unit in Dart with display, compare and convert unit.",
+        "homepage": "https://www.rk0cc.xyz",
+        "repository": "https://github.com/Weanel/weather_unit",
+        "version": "1.0.1",
+        "environment": {
+          "sdk": ">=2.12.0 <3.0.0"
+        },
+        "dev_dependencies": {
+          "test": "^1.17.10"
+        }
+      },
+      "archive_url": "https://pub.dartlang.org/packages/weather_unit/versions/1.0.1.tar.gz",
+      "published": "2021-07-25T12:36:17.219188Z"
+    },
+    {
+      "version": "1.0.1+1",
+      "pubspec": {
+        "name": "weather_unit",
+        "description": "Providing weather unit in Dart with display, compare and convert unit.",
+        "homepage": "https://www.rk0cc.xyz",
+        "repository": "https://github.com/rk0cc/weather_unit",
+        "version": "1.0.1+1",
+        "environment": {
+          "sdk": ">=2.12.0 <3.0.0"
+        },
+        "dev_dependencies": {
+          "test": "^1.17.10"
+        }
+      },
+      "archive_url": "https://pub.dartlang.org/packages/weather_unit/versions/1.0.1%2B1.tar.gz",
+      "published": "2021-08-02T13:37:24.371113Z"
+    },
+    {
+      "version": "1.1.0",
+      "pubspec": {
+        "name": "weather_unit",
+        "description": "Providing weather unit in Dart with display, compare and convert unit.",
+        "homepage": "https://www.rk0cc.xyz",
+        "repository": "https://github.com/rk0cc/weather_unit",
+        "version": "1.1.0",
+        "environment": {
+          "sdk": ">=2.12.0 <3.0.0"
+        },
+        "dev_dependencies": {
+          "test": "^1.17.10"
+        }
+      },
+      "archive_url": "https://pub.dartlang.org/packages/weather_unit/versions/1.1.0.tar.gz",
+      "published": "2021-08-17T13:46:46.415642Z"
+    },
+    {
+      "version": "1.1.1",
+      "pubspec": {
+        "name": "weather_unit",
+        "description": "Providing weather unit in Dart with display, compare and convert unit.",
+        "homepage": "https://www.rk0cc.xyz",
+        "repository": "https://github.com/rk0cc/weather_unit",
+        "version": "1.1.1",
+        "environment": {
+          "sdk": ">=2.12.0 <3.0.0"
+        },
+        "dev_dependencies": {
+          "test": "^1.17.10"
+        }
+      },
+      "archive_url": "https://pub.dartlang.org/packages/weather_unit/versions/1.1.1.tar.gz",
+      "published": "2021-08-18T09:49:56.061530Z"
+    },
+    {
+      "version": "1.1.2",
+      "pubspec": {
+        "name": "weather_unit",
+        "description": "Providing weather unit in Dart with display, compare and convert unit.",
+        "homepage": "https://www.rk0cc.xyz",
+        "repository": "https://github.com/rk0cc/weather_unit",
+        "version": "1.1.2",
+        "environment": {
+          "sdk": ">=2.12.0 <3.0.0"
+        },
+        "dev_dependencies": {
+          "test": "^1.17.10"
+        }
+      },
+      "archive_url": "https://pub.dartlang.org/packages/weather_unit/versions/1.1.2.tar.gz",
+      "published": "2021-08-18T12:14:51.099563Z"
+    },
+    {
+      "version": "1.1.2+1",
+      "pubspec": {
+        "name": "weather_unit",
+        "description": "Providing weather unit in Dart with display, compare and convert unit.",
+        "homepage": "https://www.rk0cc.xyz",
+        "repository": "https://github.com/Weanel/weather_unit",
+        "version": "1.1.2+1",
+        "environment": {
+          "sdk": ">=2.12.0 <3.0.0"
+        },
+        "dev_dependencies": {
+          "test": "^1.17.10"
+        }
+      },
+      "archive_url": "https://pub.dartlang.org/packages/weather_unit/versions/1.1.2%2B1.tar.gz",
+      "published": "2021-08-28T14:42:39.555178Z"
+    }
+  ]
+}

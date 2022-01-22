@@ -1,0 +1,21 @@
+{
+  "name": "darttindie",
+  "latestStableVersion": "1.0.0-dev.3",
+  "versions": [
+    {
+      "version": "1.0.0-dev.1",
+      "status": "failed",
+      "hasDocumentation": false
+    },
+    {
+      "version": "1.0.0-dev.2",
+      "status": "success",
+      "hasDocumentation": true
+    },
+    {
+      "version": "1.0.0-dev.3",
+      "status": "success",
+      "hasDocumentation": true
+    }
+  ]
+}

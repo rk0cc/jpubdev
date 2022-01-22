@@ -1,0 +1,38 @@
+{
+  "packages": [
+    {
+      "package": "foo"
+    },
+    {
+      "package": "crypto"
+    },
+    {
+      "package": "fluro"
+    },
+    {
+      "package": "path"
+    },
+    {
+      "package": "socket_io_client"
+    },
+    {
+      "package": "just_audio"
+    },
+    {
+      "package": "petitparser"
+    },
+    {
+      "package": "flutter_widget_from_html_core"
+    },
+    {
+      "package": "flutter_widget_from_html"
+    },
+    {
+      "package": "flutter_parsed_text"
+    },
+    {
+      "package": "usage"
+    }
+  ],
+  "next": "https://pub.dev/api/search?q=foo&page=2"
+}
