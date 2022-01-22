@@ -71,6 +71,7 @@ public record PubDevRepository(@Nonnull URL pubRoot) {
         return search(query, SearchOrdering.TOP);
     }
 
+    @Nonnull
     public PubDevPackageResultRepository fetchPackage(@Nonnull String packageName) {
         assert PubspecValueValidator.packageNaming(packageName);
         return new PubDevPackageResultRepository(this, packageName);
@@ -103,6 +104,11 @@ public record PubDevRepository(@Nonnull URL pubRoot) {
         private PubDevPackageResultRepository(@Nonnull PubDevRepository repository, @Nonnull String packageName) {
             this.repository = repository;
             this.packageName = packageName;
+        }
+
+        @Nonnull
+        public String packageName() {
+            return packageName;
         }
 
         @Nonnull
