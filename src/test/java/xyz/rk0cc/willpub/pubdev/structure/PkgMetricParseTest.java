@@ -1,6 +1,7 @@
 package xyz.rk0cc.willpub.pubdev.structure;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.*;
 import xyz.rk0cc.willpub.exceptions.pubdev.MetricsPendingAnalysisException;
 import xyz.rk0cc.willpub.pubdev.structure.pkg.PubPkgMetrics;
@@ -86,7 +87,7 @@ final class PkgMetricParseTest {
     void assertErrorIfThrowPAEOutsideDeserializer() {
         assertThrows(AssertionError.class, () -> {
             try {
-                throw new MetricsPendingAnalysisException();
+                throw new MetricsPendingAnalysisException(new ObjectMapper().createObjectNode());
             } catch (MetricsPendingAnalysisException e) {
                 fail("The exception should not be thrown outside the deserializer");
             }

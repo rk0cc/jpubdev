@@ -11,6 +11,9 @@ import java.time.ZonedDateTime;
  * Giving package's scores that affecting the display order in
  * {@link xyz.rk0cc.willpub.pubdev.PubDevRepository.SearchOrdering#POINTS} and
  * {@link xyz.rk0cc.willpub.pubdev.PubDevRepository.SearchOrdering#TOP}.
+ * <br/>
+ * If the {@link PubPkgMetrics metrics} is still analysing, {@link #grantedPoints()}, {@link #maxPoints()} and
+ * {@link #popularityScore()} will return 0.
  *
  * @since 1.0.0
  */

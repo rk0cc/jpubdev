@@ -43,7 +43,7 @@ public final class PubPkgMetricsDeserializer extends PubJacksonDeserializer<PubP
     @Override
     PubPkgMetrics deserializeNode(@Nonnull ObjectNode node, DeserializationContext deserializationContext)
             throws IOException {
-        if (!node.has("scorecard")) throw new MetricsPendingAnalysisException();
+        if (node.isEmpty()) throw new MetricsPendingAnalysisException(node);
 
         ObjectNode scoreCard = (ObjectNode) node.get("scorecard");
 
@@ -96,6 +96,7 @@ public final class PubPkgMetricsDeserializer extends PubJacksonDeserializer<PubP
     }
 }
 
+@SuppressWarnings("deprecation")
 final class PubPkgDartDocReportDeserializer extends PubJacksonDeserializer<PubPkgMetrics.DartDocReport> {
     public PubPkgDartDocReportDeserializer() {
         super();
@@ -133,6 +134,7 @@ final class PubPkgDartDocReportDeserializer extends PubJacksonDeserializer<PubPk
     }
 }
 
+@SuppressWarnings("deprecation")
 final class PubPkgDartDocEntryDeserializer extends PubJacksonDeserializer<PubPkgMetrics.DartDocReport.DartDocEntry> {
     public PubPkgDartDocEntryDeserializer() {
         super();
@@ -171,6 +173,7 @@ final class PubPkgDartDocEntryDeserializer extends PubJacksonDeserializer<PubPkg
     }
 }
 
+@SuppressWarnings("deprecation")
 final class PubPkgPanaReportDeserializer extends PubJacksonDeserializer<PubPkgMetrics.PanaReport> {
     public PubPkgPanaReportDeserializer() {
         super();
@@ -219,6 +222,7 @@ final class PubPkgPanaReportDeserializer extends PubJacksonDeserializer<PubPkgMe
     }
 }
 
+@SuppressWarnings("deprecation")
 final class PubPkgPanaEntryDeserializer extends PubJacksonDeserializer<PubPkgMetrics.PanaReport.PanaEntry> {
     public PubPkgPanaEntryDeserializer() {
         super();
