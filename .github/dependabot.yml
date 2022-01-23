@@ -6,3 +6,4 @@ updates:
       interval: "weekly"
       time: "15:00"
       timezone: "Asia/Hong_Kong"
+    open-pull-requests-limit: 0
