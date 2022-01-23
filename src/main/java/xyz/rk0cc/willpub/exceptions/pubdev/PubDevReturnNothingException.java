@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.node.ContainerNode;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * An exception which the pub API return {@link ContainerNode#isEmpty() empty context}.
@@ -27,8 +28,7 @@ public abstract class PubDevReturnNothingException extends IOException {
     PubDevReturnNothingException(@Nonnull ContainerNode<?> node) {
         super(DEFAULT_MESSAGE);
         assert isEmptyObjectNode(node);
-        assert StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
-                .getCallerClass().equals(triggeredClass());
+        assert isMatchedTriggerClass();
     }
 
     /**
@@ -40,8 +40,7 @@ public abstract class PubDevReturnNothingException extends IOException {
     PubDevReturnNothingException(@Nonnull ContainerNode<?> node, @Nonnull String message) {
         super(message);
         assert isEmptyObjectNode(node);
-        assert StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
-                .getCallerClass().equals(triggeredClass());
+        assert isMatchedTriggerClass();
     }
 
     /**
@@ -53,8 +52,7 @@ public abstract class PubDevReturnNothingException extends IOException {
     PubDevReturnNothingException(@Nonnull ContainerNode<?> node, @Nonnull Throwable throwable) {
         super(DEFAULT_MESSAGE, throwable);
         assert isEmptyObjectNode(node);
-        assert StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
-                .getCallerClass().equals(triggeredClass());
+        assert isMatchedTriggerClass();
     }
 
     /**
@@ -71,8 +69,7 @@ public abstract class PubDevReturnNothingException extends IOException {
     ) {
         super(message, throwable);
         assert isEmptyObjectNode(node);
-        assert StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
-                .getCallerClass().equals(triggeredClass());
+        assert isMatchedTriggerClass();
     }
 
     /**
@@ -92,5 +89,18 @@ public abstract class PubDevReturnNothingException extends IOException {
      */
     private boolean isEmptyObjectNode(@Nonnull ContainerNode<?> node) {
         return node.isEmpty();
+    }
+
+    /**
+     * Matching the {@link Class} is triggered from.
+     *
+     * @return <code>true</code> if matched triggered class
+     */
+    private boolean isMatchedTriggerClass() {
+        return StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
+                .walk(sfs -> sfs.filter(sf -> sf.getDeclaringClass() != PubDevReturnNothingException.class).findFirst())
+                .orElseThrow()
+                .getDeclaringClass()
+                .equals(triggeredClass());
     }
 }
