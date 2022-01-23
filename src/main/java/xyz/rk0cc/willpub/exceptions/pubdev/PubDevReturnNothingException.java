@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.node.ContainerNode;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
-import java.util.Optional;
 
 /**
  * An exception which the pub API return {@link ContainerNode#isEmpty() empty context}.
