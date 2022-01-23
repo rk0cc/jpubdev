@@ -98,9 +98,6 @@ public abstract class PubDevReturnNothingException extends IOException {
      */
     private boolean isMatchedTriggerClass() {
         return StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
-                .walk(sfs -> sfs.filter(sf -> sf.getDeclaringClass() != PubDevReturnNothingException.class).findFirst())
-                .orElseThrow()
-                .getDeclaringClass()
-                .equals(triggeredClass());
+                .walk(sfs -> sfs.anyMatch(sf -> sf.getDeclaringClass().equals(triggeredClass())));
     }
 }
