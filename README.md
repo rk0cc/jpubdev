@@ -18,7 +18,7 @@ Java object.
     </dependency>
 </dependencies>
 ```
-<p>* this package is bundled <a href="https://github.com/Project-Will-Pub/jpubspec">jpubspec</a> 1.2.0</p>
+<p>* this package is bundled <a href="https://github.com/Project-Will-Pub/jpubspec">jpubspec</a> 1.2.1</p>
 
 ## Setup requirement
 
