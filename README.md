@@ -14,7 +14,7 @@ Java object.
     <dependency>
         <groupId>xyz.rk0cc.willpub</groupId>
         <artifactId>jpubdev</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </dependency>
 </dependencies>
 ```
