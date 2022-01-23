@@ -23,6 +23,7 @@ Java object.
 ## Setup requirement
 
 Maven 3
+
 JDK 17 or higher
 
 ## License
