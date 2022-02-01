@@ -7,7 +7,8 @@
 This package aims to parse API result from pub.dev or other pub repository server information into
 Java object.
 
-This repository is replicating [pub_api_client's](https://github.com/leoafarias/pub_api_client) feature to Java which written in Dart originally (but different structures).
+This repository is "reverse engineering" [pub_api_client's](https://github.com/leoafarias/pub_api_client) feature to Java which written in Dart originally with different 
+structures.
 
 ## Supported feature
 
