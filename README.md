@@ -7,6 +7,17 @@
 This package aims to parse API result from pub.dev or other pub repository server information into
 Java object.
 
+This repository is replicating [pub_api_client's](https://github.com/leoafarias/pub_api_client) feature to Java which written in Dart originally.
+
+## Supported feature
+
+* Search package
+  * Supported sort with different method
+* Fetch package's information
+  * Released versions
+  * Options
+  * Pub score and analystic report
+
 ## Install
 
 **Maven POM**
@@ -19,13 +30,12 @@ Java object.
     </dependency>
 </dependencies>
 ```
-<p>* this package is bundled <a href="https://github.com/Project-Will-Pub/jpubspec">jpubspec</a> 1.2.1</p>
+<p>* this package is bundled <a href="https://github.com/Project-Will-Pub/jpubspec">jpubspec</a> 1.2.2</p>
 
 ## Setup requirement
 
-Maven 3
-
-JDK 17 or higher
+* Maven 3
+* JDK 17 or higher
 
 ## License
 
