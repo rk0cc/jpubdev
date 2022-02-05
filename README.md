@@ -19,6 +19,21 @@ structures.
   * Options
   * Pub score and analystic report
 
+## User Agents
+
+JPubDev has it's own user agents which following with this format:
+
+```text
+jpubdev/[jpubdev's version] (JRE [Java version])
+```
+
+And the table for square bracket:
+
+| Square bracket label | Meaning | Sample |
+|:---:|:---|:---:|
+|jpubdev's version|JPubdev's version (Unchanged when new patch version released)|`jpubdev:1.0.0` > `1.0.0` <br/> `jpubdev:1.0.3` > `1.0.0` <br/> `jpubdev:1.2.0` > `1.2.0`|
+|Java version|Java version uses for running jpubdev| `17` <br/> `17.0.1`|
+
 ## Install
 
 **Maven POM**
