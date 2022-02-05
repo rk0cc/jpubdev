@@ -21,7 +21,7 @@ structures.
 
 ## User Agents
 
-JPubDev has it's own user agents which following with this format:
+JPubdev has it's own user agents which following with this format:
 
 ```text
 jpubdev/[jpubdev's version] (JRE [Java version])
